@@ -14,30 +14,21 @@ export const FETCH_CHARACTERS = 'FETCH_CHARACTERS';
 export const SUCCESS = 'SUCCESS';
 export const FAILURE = 'FAILURE';
 
-//ActionCreators
-export const success = (data) => {
-    return {
-        type: types.SUCCESS,
-        payload: data,
-    }
-}
-
-
-export const failure = (message) => {
-    return {
-        type: types.FAILURE,
-        payload: message,
-    }
-}
 
 export const fetchCharacters = () => dispatch => {
-    // we code
-    axios.get('https://swapi.co/api/people/')
-      .then(res => {
-        dispatch(success(res.data)); 
-      })
-      .catch(error => {
-        console.log(error.message);
-        dispatch(failure(error.message));
+    dispatch({ type: FETCH_CHARACTERS });
+  axios
+    .get("https://swapi.co/api/people/")
+    .then(({ data }) => {
+      dispatch({
+        type: SUCCESS,
+        payload: data.results
       });
-  };
+    })
+    .catch(err => {
+      dispatch({
+        type: FAILURE,
+        payload: err.message
+      });
+    });
+};
