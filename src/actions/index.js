@@ -18,7 +18,7 @@ export const FAILURE = 'FAILURE';
 export const fetchCharacters = () => dispatch => {
     dispatch({ type: FETCH_CHARACTERS });
   axios
-    .get("https://swapi.co/api/people/")
+    .get("https://swapi.co/api/people")
     .then(({ data }) => {
       dispatch({
         type: SUCCESS,

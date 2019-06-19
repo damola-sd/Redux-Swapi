@@ -5,12 +5,13 @@ import App from "./App";
 import { Provider } from "react-redux";
 import { applyMiddleware, createStore } from "redux";
 import thunk from 'redux-thunk';
-import charsReducer from "./reducers/index"
+import logger from 'redux-logger';
+import charsReducer from "./reducers/index";
 
 const store = createStore(
   charsReducer,
-  applyMiddleware(thunk),
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+  applyMiddleware(thunk, logger)
+  
 );
 
 ReactDOM.render(
