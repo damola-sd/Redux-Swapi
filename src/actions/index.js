@@ -7,7 +7,7 @@
 // the url to fetch characters from is `https://swapi.co/api/people/`
 // remember that now we have controll over our thunk-based action creator
 import axios from 'axios';
-import { types } from 'util';
+
 
 //Action Types
 export const FETCH_CHARACTERS = 'FETCH_CHARACTERS';
@@ -26,7 +26,7 @@ export const success = (data) => {
 export const failure = (message) => {
     return {
         type: types.FAILURE,
-        payload: data,
+        payload: message,
     }
 }
 
@@ -34,9 +34,7 @@ export const fetchCharacters = () => dispatch => {
     // we code
     axios.get('https://swapi.co/api/people/')
       .then(res => {
-        // what do you suggest?
-        // dispatch({ type: types.ADD_QUOTES, payload: res.data }); // option 1
-        dispatch(success(res.data)); // option 2
+        dispatch(success(res.data)); 
       })
       .catch(error => {
         console.log(error.message);
